@@ -157,9 +157,7 @@ print(a)
 
 Dans des clauses imbriquées, on empile les alinéas.
 
-#+begin_src python
-import random
-
+#+begin_src python :prologue import random
 x = random.random()
 a = 0
 
@@ -365,7 +363,6 @@ def g(x):
 
 print(comp(f,g)(2))
 #+end_src
-
 
 # Local Variables:
 # ispell-local-dictionary: "francais-tex"

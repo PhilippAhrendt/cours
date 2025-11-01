@@ -1,0 +1,105 @@
+#+title: Introduction Python: Exercices 1
+
+#+property: header-args :results output
+
+* Table de matières :toc:
+- [[#exercice-1-années-bissextiles][Exercice 1: Années bissextiles]]
+- [[#exercice-2-algorithme-deuclide][Exercice 2: Algorithme d'Euclide]]
+  - [[#question-a][Question a:]]
+  - [[#question-b][Question b:]]
+- [[#exercice-3-recherche-de-fonctions-inverses][Exercice 3: Recherche de fonctions inverses]]
+  - [[#question-a-inversion-sur-les-entiers][Question a: Inversion sur les entiers]]
+  - [[#question-b-recherche-dichotomique][Question b: Recherche dichotomique]]
+  - [[#question-c-recherche-dichotomique-sur-les-nombres-réels][Question c: Recherche dichotomique sur les nombres réels]]
+
+* Exercice 1: Années bissextiles
+
+Les années bissextiles (les années avec 29 jours en février au lieu de 28) sont les années qui respectent l'une des conditions suivantes:
+
+1. L'année est divisible par 4 sans être divisible par 100.
+2. L'année est divisible par 400.
+
+Écrire une fonction ~bissextile~ qui prend en entrée un entier (représentant l'année) et retourne ~True~ si l'année est bissextile, et ~False~ sinon.
+
+* Exercice 2: Algorithme d'Euclide
+
+Le plus grand diviseur commun de deux entiers non nuls /n,m/, noté /pgcd(n,m)/, est le plus grand entier /k/ tel que /n/​/​/k/ et /m/​/​/k/ soient tous les deux entiers. Les deux propriétés suivantes sont vérifiées par le /pgcd/:
+
+1. Si /m/ divise /n/, alors /pgcd(n,m)=m/.
+2. Sinon, /pgcd(n,m)=pgcd(m,n % m)/, où /n % m/ est le reste de la division euclidienne.
+
+** Question a:
+
+Utiliser les deux propriétés ci-dessus pour écrire une fonction ~pgcd~, qui prend en entrée deux entiers, et donne en sortie leur /pgcd/.
+
+** Question b:
+
+Pouvez-vous expliquer pourquoi cette fonction finit toujours par rendre un résultat (i.e pourquoi elle ne peut jamais tourner à l'infini)? Pouvez-vous expliquer pourquoi elle calcule bien le /pgcd/?
+
+* Exercice 3: Recherche de fonctions inverses
+
+Si /f(x)/ est une fonction strictement croissante en /x/, elle admet une fonction inverse /g(y)/ telle que /g(f(x))=x/ et /f(g(y))=y/. Dans cet exercice, le but est de trouver algorithmiquement des approximations de la fonction inverse d'une fonction /f/ croissante, par différentes méthodes.
+
+** Question a: Inversion sur les entiers
+
+Une première approche consiste à chercher les valeurs de la fonction inverse sur les entiers uniquement (positifs et négatifs). Pour une fonction /f/ strictement croissante, on peut définir son inverse /g/ sur les entiers par:
+
+- /g(n)=k/, où /k/ est le plus grand entier tel que /f(k)/​\le​/n/
+
+Écrire une fonction ~inv_int~ qui prend en entrée une fonction /f/ (que l'on suppose strictement croissante), et un entier /n/, et donne en résultat la valeur /g(n)/.
+
+Pour tester cette fonction, vous pouvez utiliser, par exemple des fonctions puissances, et les tester contre les racines /n/-ièmes.
+
+#+begin_src python
+import math
+
+def f(n):
+    return n**3
+
+def g_int(n):
+    # La fonction que doit trouver l'algorithme
+    return math.floor(n**(1/3))
+
+
+# Tester sur cette fonction aussi. L'algoroithme marche-t-il encore?
+def f_bis(n):
+    return (n+5)**3
+
+def g_bis_int(n):
+    return math.floor(n**(1/3)-5)
+#+end_src
+
+** Question b: Recherche dichotomique
+
+Une manière de calculer efficacement l'inversion entière d'une fonction est par *recherche dichotomique*. Dans un premier temps, on va supposer que la fonction /f/ vérifie /n/​\le​/f(n)/. Le but toujours de trouver /g(n)/:
+
+- /g(n)=k/, où /k/ est le plus grand entier tel que /f(k)/​\le​/n/.
+
+L'algorithme de recherche dichotomique consiste à diminuer progressivement l'intervalle dans lequel on cherche /g(n)/. A chaque étape, on a un intervalle [​/k/​_​/min/,​/k/​_​/max/​], et on prend /k/ dans cet intervalle. Si /k/ est plus grand que /g(n)/, on remplace /k/​_​/max/ par /k/, et on cherche relance la recherche dans ​[​/k/​_​/min/,​/k/​], et si /k/ est plus petit, on remplace /k/​_​/min/ et relance. On répète cela jusqu'à ce qu'on trouve /g(n)/. Voici une manière d'implémenter cela:
+
+1. Initialiser:
+   - /k/​_​/min <- 0/
+   - /k/​_​/max <- n/
+2. Tant que /g(n)/ n'est pas trouvée:
+   - /k <- partie entière de (k/​_​/min+k/​_​/max)/​/​2
+   - Si /f(k)/​\le​/n/:
+     + Si /f(k+1)>n/, *fin*: on sort /g(n)=k/
+     + Sinon, /k/​_​/min <- k/
+   - Si /f(k)>n/, /k/​_​/max/ <- /k/
+
+Écrire une fonction ~inv_int_dicho~ qui prend une fonction /f/ et un entier /n/, et trouve l'inverse /g(n)/ par recherche dichotomique.
+
+Comment peut-on adapter cette fonction pour qu'elle marche sur n'importe quelle fonction croissante?
+
+** Question c: Recherche dichotomique sur les nombres réels
+
+On peut utiliser le même principe pour approcher l'inverse sur les nombres réels. Une fonction inverse approchée d'une fonction /f(x)/ est une fonction /g(y)/ telle que |​/g(f(x))-x/​| \le \epsilon, pour une tolérance d'erreur \epsilon > 0 choisi au préalable.
+
+Adapter l'algorithme précédent pour écrire une fonction ~inv_dicho~, qui prend en entrée une fonction /f/, un nombre /x/, et un nombre positif \epsilon, et trouve /g(x)/ avec une erreur maximale de \epsilon.
+
+
+# Local Variables:
+# ispell-local-dictionary: "francais"
+# End:
+
+#  LocalWords:  d'Euclide pgcd i.e algorithmiquement ièmes Pouvez-vous peut-on
