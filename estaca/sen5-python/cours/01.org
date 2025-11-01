@@ -353,9 +353,9 @@ print(decal(2)(4))
 
 #+begin_src python
 def comp(f,g):
-    def composee(x):
+    def compose(x):
         return g(f(x))
-    return composee
+    return compose
 
 def f(x):
     return x+2
@@ -365,6 +365,7 @@ def g(x):
 
 print(comp(f,g)(2))
 #+end_src
+
 
 # Local Variables:
 # ispell-local-dictionary: "francais-tex"
