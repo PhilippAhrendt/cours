@@ -78,14 +78,14 @@ Une manière de calculer efficacement l'inversion entière d'une fonction est pa
 L'algorithme de recherche dichotomique consiste à diminuer progressivement l'intervalle dans lequel on cherche g(n). A chaque étape, on a un intervalle [k_{min},k_{max}], et on prend k dans cet intervalle. Si k est plus grand que g(n), on remplace k_{max} par k, et on cherche relance la recherche dans ​[k_{min},k], et si k est plus petit, on remplace k_{min} et relance. On répète cela jusqu'à ce qu'on trouve g(n). Voici une manière d'implémenter cela:
 
 1. Initialiser:
-   - k_{min} <- 0
-   - k_{max} <- n
+   - k_{min} \leftarrow 0
+   - k_{max} \leftarrow n
 2. Tant que g(n) n'est pas trouvée:
-   - k <- partie entière de (k_{min}+k_{max})/2
+   - k \leftarrow partie entière de (k_{min}+k_{max})/2
    - Si f(k) \le n:
-     + Si f(k+1)>n, *fin*: on sort g(n)=k
-     + Sinon, k_{min} <- k
-   - Si f(k)>n, k_{max} <- k
+     + Si f(k+1) > n, *fin*: on sort g(n)=k
+     + Sinon, k_{min} \leftarrow k
+   - Si f(k) > n, k_{max} \leftarrow k
 
 Écrire une fonction ~inv_int_dicho~ qui prend une fonction f et un entier n, et trouve l'inverse g(n) par recherche dichotomique.
 
