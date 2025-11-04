@@ -17,7 +17,7 @@
 
 En python, les données sont catégorisées en /types/ (ou /classes/).
 
-Voici les types les plus importants
+Voici les types basiques les plus importants:
 
 | *Type python* | *Description*           |
 |-------------+-----------------------|
@@ -25,9 +25,6 @@ Voici les types les plus importants
 | ~bool~        | Vrai ou faux          |
 | ~float~       | Nombres décimaux      |
 | ~str~         | Chaînes de caractères |
-| ~function~    | Fonctions             |
-| ~list~        | Listes                |
-| ~dict~        | Dictionnaires         |
 
 Il y a aussi un objet "vide" ~None~, qui a son type à part ~NoneType~ (c'est l'équivalent du ~void~ de C++).
 
@@ -69,6 +66,12 @@ Avec ~int~ et ~float~, on peut faire des calculs simples (addition, multiplicati
 | ~i*j~      | Multiplication | ~int~ si ~i~ et ~j~ sont de type ~int~, sinon ~float~ |
 | ~i/j~      | Division       | ~float~                                       |
 | ~i**j~     | Puissance      | ~float~                                       |
+
+*Remarque:* On peut aussi additionner deux ~str~
+
+#+begin_src python
+print("Hello " + "world!")
+#+end_src
 
 ** Opérations sur ~int~ uniquement
 
