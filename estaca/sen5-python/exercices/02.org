@@ -1,0 +1,65 @@
+#+title: Introduction Python: Exercices 2
+
+#+property: header-args :results output
+
+* Table de matières :toc:
+- [[#exercice-1-recherche-de-motif][Exercice 1: Recherche de motif]]
+  - [[#question-a][Question a:]]
+  - [[#question-b][Question b:]]
+- [[#exercice-2-opérations-basiques-sur-les-listes][Exercice 2: Opérations basiques sur les listes]]
+  - [[#question-a-1][Question a:]]
+  - [[#question-b-1][Question b:]]
+- [[#exercice-3-algorithmes-de-tri][Exercice 3: Algorithmes de tri]]
+  - [[#question-a-tri-par-insertion][Question a: Tri par insertion]]
+  - [[#question-b-tri-par-sélection][Question b: Tri par sélection]]
+- [[#exercices-sur-les-dictionnaires][exercices sur les dictionnaires]]
+
+* Exercice 1: Recherche de motif
+
+** Question a:
+
+Écrire une fonction ~motif~ qui prend en entrée deux chaînes de caractères, et teste si la première apparaît dans la deuxième.
+
+*Exemples:*
+- ~motif("gori", "algorithme") = True~
+- ~motif("agor", "algorithme") = False~
+
+** Question b:
+Écrire une fonction ~motif_occ~ qui prend en entrée deux chaînes de caractères et renvoie le nombre de fois que la première chaîne apparaît dans la deuxième. Deux apparitions distinctes peuvent partager des caractères.
+
+*Exemple:*
+- ~motif_occ("aba","ababa") = 2~
+
+* Exercice 2: Opérations basiques sur les listes
+
+** Question a:
+
+Écrire des fonctions ~l_max~ et ~l_min~, qui prennent en entrée une liste de nombres et renvoient, respectivement son plus grand et plus petit élément. Ces fonctions ne doivent pas utiliser les fonctions ~max~ et ~min~ de python.
+
+** Question b:
+
+Écrire une fonction ~moy~ qui prend en entrée une liste de nombres et renvoie la moyenne de ses éléments.
+
+* Exercice 3: Algorithmes de tri
+
+Dans cet exercice, nous allons implémenter différents algorithmes pour trier une liste de nombres, de l'élément le plus petit au plus grand.
+
+** Question a: Tri par insertion
+
+Dans le tri par insertion, l'idée est de parcourir de parcourir la liste en la triant progressivement. Pour une liste de longueur n, à l'étape i, on cherche la place du i-ième élément dans la dans la partie entre 0 et i. Pour i = 0, cela revient à ne rien faire; on ne peut pas déplacer en arrière l'élément en position 0. Pour i = 1, il faut comparer ~L[1]~ avec ~L[0]~ et les échanger si ~L[0] > L[1]~. En continuant cette procédure sur 0 \le i < n, on assure qu'à la i-ième étape, les éléments 0 \le j < i sont déjà triés, et qu'il suffit d'insérer le i-ième élément à la bonne place pour que les éléments 0 \le j < i+1 soient triés. Après l'étape i = n-1, toute la liste est triée.
+
+Écrire une fonction ~tri_insertion~, qui prend en entrée une liste, et la trie en faisant le tri par insertion.
+
+** Question b: Tri par sélection
+
+Dans le tri par sélection, on cherche successivement les éléments croissants de la liste, en commençant par le plus petit, et les mets dans le bon ordre au début de la liste. A l'étape i, on cherche le plus petit élément parmi les éléments i \le j < n. Quand on a trouvé cet élément en position j_{m}, on le déplace vers i, et on décale les autres éléments entre i et j_{m} vers l'avant. Quand on arrive à la fin, la liste est triée.
+
+Écrire une fonction ~tri_selection~, qui prend en entrée une liste, et la trie en faisant le tri par sélection.
+
+* TODO exercices sur les dictionnaires
+
+# Local Variables:
+# ispell-local-dictionary: "francais-tex"
+# End:
+
+#  LocalWords:  i-ième
