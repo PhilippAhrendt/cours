@@ -12,7 +12,7 @@
 - [[#exercice-3-algorithmes-de-tri][Exercice 3: Algorithmes de tri]]
   - [[#question-a-tri-par-insertion][Question a: Tri par insertion]]
   - [[#question-b-tri-par-sélection][Question b: Tri par sélection]]
-- [[#exercices-sur-les-dictionnaires][exercices sur les dictionnaires]]
+- [[#exercice-4-points-au-qcm][Exercice 4: Points au QCM]]
 
 * Exercice 1: Recherche de motif
 
@@ -56,10 +56,44 @@ Dans le tri par sélection, on cherche successivement les éléments croissants 
 
 Écrire une fonction ~tri_selection~, qui prend en entrée une liste, et la trie en faisant le tri par sélection.
 
-* TODO exercices sur les dictionnaires
+* Exercice 4: Points au QCM
+
+On souhaite créer une liste des points obtenus par chaque étudiant lors d'un QCM. Le QCM contient 10 questions avec des réponses a,b,c,d. Les étudiants peuvent ne pas répondre à une question. Les résultats sont sauvegardés sous forme d'un dictionnaire ~reponses_etudiants~ avec une entrée pour chaque étudiant contenant ses réponses sous forme d'un dictionnaire. Si l'étudiant n'a pas répondu à une question, celle-ci ne figure pas dans son dictionnaire. On a aussi sauvegardé le corrigé dans un dictionnaire ~corrige~. Voici un exemple avec une classe de 5 étudiants.
+
+#+begin_src python
+etudiants = ['Marc', 'Julien', 'Alice', 'Grégoire', 'Caroline']
+
+corrige = {
+    'Q1': 'd',
+    'Q2': 'b',
+    'Q3': 'c',
+    'Q4': 'd',
+    'Q5': 'c',
+    'Q6': 'b',
+    'Q7': 'b',
+    'Q8': 'c',
+    'Q9': 'd',
+    'Q10': 'd',
+}
+
+reponses_etudiants = {
+    'Marc': {'Q1': 'a', 'Q2': 'b', 'Q3': 'c', 'Q4': 'c', 'Q6': 'b', 'Q7': 'b', 'Q8': 'c', 'Q9': 'c', 'Q10': 'd'},
+    'Julien': {'Q1': 'd', 'Q2': 'a', 'Q3': 'd', 'Q5': 'c', 'Q6': 'b', 'Q7': 'c', 'Q8': 'c', 'Q9': 'c', 'Q10': 'a'},
+    'Alice': {'Q1': 'b', 'Q2': 'b', 'Q3': 'b', 'Q4': 'd', 'Q5': 'a', 'Q6': 'a', 'Q7': 'a', 'Q8': 'c', 'Q10': 'd'},
+    'Grégoire': {'Q2': 'b', 'Q3': 'c', 'Q4': 'd', 'Q5': 'c', 'Q6': 'b', 'Q7': 'b', 'Q8': 'c', 'Q10': 'd'},
+    'Caroline': {'Q1': 'd', 'Q2': 'd', 'Q3': 'c', 'Q4': 'a', 'Q5': 'c', 'Q6': 'b', 'Q7': 'b', 'Q8': 'c', 'Q9': 'd', 'Q10': 'd'},
+}
+#+end_src
+
+Les points sont attribués de la manière suivante:
+- Chaque réponse correcte donne 3 points
+- Chaque réponse fausse donne -1 points
+- Une question sans réponse donne 0 points
+
+Écrire une fonction une fonction ~correction_QCM~ prenant en entrée un dictionnaire de réponses étudiants et le corrigé, et renvoie en sortie un dictionnaire avec une entrée pour chaque étudiant contenant son résultat au QCM.
 
 # Local Variables:
 # ispell-local-dictionary: "francais-tex"
 # End:
 
-#  LocalWords:  i-ième
+#  LocalWords:  i-ième QCM

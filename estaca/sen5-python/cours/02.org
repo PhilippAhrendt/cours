@@ -290,10 +290,10 @@ notes["Caroline"] = 20
 del(notes["Julien"])
 print(notes)
 
-# On peut itérer sur les clés du dictionnaire
+# On peut itérer sur les clés du dictionnaire, avec dict.keys()
 def admis(notes):
    liste_admis = []
-   for etudiant in notes:
+   for etudiant in notes.keys():
       if notes[etudiant] >= 10:
          liste_admis.append(etudiant)
 
@@ -301,6 +301,18 @@ def admis(notes):
 
 liste_admis = admis(notes)
 print(liste_admis)
+
+# On peut aussi accéder aux valeurs, avec dict.values()
+
+def ratrappages(notes):
+   for i in range(10):
+      if i in notes.values():
+         print("Il faut une session de ratrappage")
+         return
+
+   print("Tout le monde a validé!")
+
+ratrappages(notes)
 #+end_src
 
 * Mutabilité
