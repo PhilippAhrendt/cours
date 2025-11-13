@@ -1,4 +1,4 @@
-#+title: Introduction Python: Séance 1
+#+title: Introduction Python: Séance 1. Données et opérations de base
 
 #+property: header-args :results output
 

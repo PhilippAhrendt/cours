@@ -1,4 +1,4 @@
-#+title: Introduction Python: Séance 2
+#+title: Introduction Python: Séance 2. Données composites et mutabilité
 
 #+property: header-args :results output
 

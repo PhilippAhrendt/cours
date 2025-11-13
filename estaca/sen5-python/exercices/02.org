@@ -6,7 +6,7 @@
 - [[#exercice-1-recherche-de-motif][Exercice 1: Recherche de motif]]
   - [[#question-a][Question a:]]
   - [[#question-b][Question b:]]
-- [[#exercice-2-opérations-basiques-sur-les-listes][Exercice 2: Opérations basiques sur les listes]]
+- [[#exercice-2-opérations-de-base-sur-les-listes][Exercice 2: Opérations de base sur les listes]]
   - [[#question-a-1][Question a:]]
   - [[#question-b-1][Question b:]]
 - [[#exercice-3-algorithmes-de-tri][Exercice 3: Algorithmes de tri]]
@@ -30,7 +30,7 @@
 *Exemple:*
 - ~motif_occ("aba","ababa") = 2~
 
-* Exercice 2: Opérations basiques sur les listes
+* Exercice 2: Opérations de base sur les listes
 
 ** Question a:
 
