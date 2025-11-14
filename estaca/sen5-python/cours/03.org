@@ -1,0 +1,112 @@
+#+title: Introduction Python: Séance 3
+
+#+property: header-args :results output
+
+* Table de matières :toc:
+- [[#généralités-dalgorithmique-et-de-complexité][Généralités d'algorithmique et de complexité]]
+- [[#récursion][Récursion]]
+- [[#diviser-pour-régner][Diviser pour régner]]
+- [[#programmation-dynamique][Programmation dynamique]]
+
+* Généralités d'algorithmique et de complexité
+
+* Récursion
+
+La *récursion* est une manière d'organiser un problème algorithmique, qui consiste à décrire la solution du problème dans un cas complexe en termes de ses solutions dans des cas simples.
+
+*Cas typique:* un problème sur les entiers naturels peut se formuler sous forme d'une *récurrence* mathématique.
+
+*Exemple:* calcul de factoriel
+
+Le factoriel n! d'un entier n est le produit 1 \times 2 \times 3 ... \times (n-1) \times n. On peut écrire la suite des n! comme une récurrence:
+
++ 0! = 1
++ Pour n \ge 1, n! = n \times (n-1)!
+
+On peut interpréter cela comme une instruction pour calculer n! de n'importe quel n. Le cas "simple" est 0!, pour lequel on a directement la réponse. Ensuite, calculer n! pour un n plus grand revient à multiplier par n le résultat (trouvé auparavant) pour n-1. Au final, tout se ramène au cas n = 0. On peut implémenter ce raisonnement dans un code python:
+
+#+begin_src python
+def factoriel(n):
+    if n == 0:
+        return 1 # Cas de base
+    else:
+        return n * factoriel(n-1) # Appel recursif
+#+end_src
+
+*Exemple:* Nombres de fibonacci
+
+Les nombres de fibonacci sont les nombres de la suite
+
++ f_{0} = 0
++ f_{1} = 1
++ Pour n \ge 2, f_{n} = f_{n-1} + f_{n-2}
+
+Voici les 10 premiers nombres de fibonacci: 0,1,1,2,3,5,8,13,21,34
+
+Avec la définition ci-dessus, on a un algorithme récursif très naturel pour calculer la suite de fibonacci
+
+#+begin_src python
+def fibonacci(n):
+    if n == 0:
+        return 0
+
+    elif n == 1:
+        return 1
+
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+#+end_src
+
+Il y a des problèmes qui sont plus simples à résoudre si on les pose de manière récursive.
+
+*Exemple:* Les tours de Hanoi
+
+Dans le jeu des /tours de Hanoi/, on a 3 piliers et n disques troués de différentes tailles, que l'on peut empiler sur les piliers. Au départ, tous les disques sont empilés, du plus grand au plus petit, sur l'un des piliers. Le but du jeu est de déplacer les disques, un par un, jusqu'à ce qu'ils soient empilé sur un autre pilier, du plus grand au plus petit. Cela en suivant les règles suivantes.
+
+- On ne peut déplacer une pile que lorsqu'elle se trouve en haut d'une pile
+- On ne peut pas placer un disque au-dessus d'un disque plus petit.
+
+Voici une illustration d'une suite d'emplacement que l'on peut faire, dans le but de déplacer la pile du pilier 1 au pilier 3.
+
+#+begin_example
+
+     ||            ||            ||
+    =||=           ||            ||
+   ==||==          ||            ||
+  ===||===         ||            ||
+ ====||====        ||            ||
+=====||=====       ||            ||
+
+
+     ||            ||            ||
+     ||            ||            ||
+   ==||==          ||            ||
+  ===||===         ||            ||
+ ====||====        ||            ||
+=====||=====      =||=           ||
+
+     ||            ||            ||
+     ||            ||            ||
+     ||            ||            ||
+  ===||===         ||            ||
+ ====||====        ||            ||
+=====||=====      =||=         ==||==
+
+     ||            ||            ||                                          ||            ||            ||
+     ||            ||            ||                                          ||            ||           =||=
+     ||            ||            ||                                          ||            ||          ==||==
+  ===||===         ||            ||          ------------------>>            ||            ||         ===||===
+ ====||====        ||           =||=                                         ||            ||        ====||====
+=====||=====       ||          ==||==                                        ||            ||       =====||=====
+#+end_example
+
+
+* Diviser pour régner
+
+* Programmation dynamique
+
+# Local Variables:
+# ispell-local-dictionary: "francais-tex"
+# End:
+
+#  LocalWords:  fibonacci Hanoi
