@@ -100,6 +100,63 @@ Voici une illustration d'une suite d'emplacement que l'on peut faire, dans le bu
 =====||=====       ||          ==||==                                        ||            ||       =====||=====
 #+end_example
 
+*Problème:* Trouver un algorithme pour déplacer les disques, de sorte que la pile se déplace d'un pilier vers un autre, par exemple de 1 vers 3.
+
+*Idée:* Il y a une manière de formuler la solution sur n disques en termes de la solution sur n-1 disques. En voici une illustration:
+
+#+begin_example
+
+     ||            ||            ||
+    =||=           ||            ||
+   ==||==          ||            ||
+  ===||===         ||            ||          |
+ ====||====        ||            ||          |
+=====||=====       ||            ||          |
+                                             |
+                   |                         |
+                   |  Hanoi(4,1 -> 2)        |
+                   |                         |
+                   V                         |
+                                             |
+     ||            ||            ||          |
+     ||            ||            ||          |
+     ||           =||=           ||          |
+     ||          ==||==          ||          |
+     ||         ===||===         ||          |
+=====||=====   ====||====        ||          |
+                                             |
+                   |                         |
+                   |  Deplacer disque 5      |  Hanoi(5,1 -> 3)
+                   |  de 1 vers 3            |
+                   V                         |
+                                             |
+     ||            ||            ||          |
+     ||            ||            ||          |
+     ||           =||=           ||          |
+     ||          ==||==          ||          |
+     ||         ===||===         ||          |
+     ||        ====||====   =====||=====     |
+                                             |
+                   |                         |
+                   |  Hanoi(4,2 -> 3)        |
+                   |                         |
+                   V                         |
+                                             |
+     ||            ||            ||          |
+     ||            ||           =||=         |
+     ||            ||          ==||==        V
+     ||            ||         ===||===
+     ||            ||        ====||====
+     ||            ||       =====||=====
+#+end_example
+
+Cela donne un algorithme récursif pour les tours de Hanoi (voir dans les exercices).
+
+On peut aussi faire de la récursion sur autre chose que les entiers
+
+*Exemple:* Représentation infixe d'un arbre de recherche
+
+Il est souvent utile de stocker des données sous forme d'un *arbre*. Voici une illustration d'un arbre binaire:
 
 * Diviser pour régner
 
