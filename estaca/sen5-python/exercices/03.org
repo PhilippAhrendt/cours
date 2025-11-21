@@ -1,0 +1,78 @@
+#+title: Exercices 3
+
+#+property: header-args :results output
+
+* Table de matières :toc:
+- [[#exercice-1-palindromes][Exercice 1: Palindromes]]
+- [[#exercice-2-tri-par-insertion-récursif][Exercice 2: Tri par insertion récursif]]
+  - [[#question-a][Question a:]]
+  - [[#question-b][Question b:]]
+  - [[#question-c][Question c:]]
+- [[#exercice-3-tours-de-hanoï][Exercice 3: Tours de Hanoï]]
+- [[#exercice-4-tri-fusion][Exercice 4: Tri fusion]]
+  - [[#question-a-1][Question a:]]
+  - [[#question-b-1][Question b:]]
+
+* Exercice 1: Palindromes
+
+Un palindrome est une chaîne de caractères qui reste la même lorsqu'on inverse l'ordre des caractères. Par exemple, /kayak/ et /elle/ sont des palindromes. On considère aussi que la chaîne vide ~""~ est un palindrome, et que toute chaîne à un seul caractère, comme par exemple ~"a"~​, est un palindrome. Écrire une fonction ~palindrome~ qui teste si une chaîne de caractères est un palindrome ou non.
+
+* Exercice 2: Tri par insertion récursif
+
+Dans cet exercice, on va reformuler le tri par insertion comme un algorithme récursif. Dans un premier temps, on va considérer une version qui ne manipule pas la liste d'entrée ~L~, mais qui rend une nouvelle liste ~L_t~ triée contenant les mêmes entrées que ~L~.
+
+** Question a:
+
+Écrire une fonction ~inser(L,n)~, qui prend en entrée une liste ~L~, que l'on suppose triée, et un nombre ~n~, et renvoie la liste triée ~L_1~ obtenue en rajoutant ~n~ à ~L~.
+
+** Question b:
+
+Utiliser la fonction ~inser~ pour écrire une fonction récursive ~tri_insertion_rec~ qui implémente le tri par insertion.
+
+** Question c:
+
+Écrire une fonction récursive ~tri_insertion_rec_direct(L)~ qui trie directement la liste d'entrée ~L~.
+
+* Exercice 3: Tours de Hanoï
+
+Dans cet exercice, on va implémenter la solution récursive du jeu des /tours de Hanoï/ vue en cours.
+
+La représentation du jeu est la suivante:
+
+- Les trois piliers sont représentés par les caractères ~'A'~​, ~'B'~ et ~'C'~.
+- Un nombre ~n~ représente le nombre de disques dans le jeu.
+
+Écrire une fonction ~hanoi(n,P1,P2)~, qui prend en entrée le nombre ~n~ de piliers, le pilier de départ ~P1~ et d'arrivée ~P2~, et qui affiche une par une les instructions pour déplacer ~n~ piliers de ~P1~ vers ~P2~.
+
+Par exemple, ~hanoi(3,'A','C')~ doit afficher:
+
+#+begin_example
+deplacer disque 1 de A vers C
+deplacer disque 2 de A vers B
+deplacer disque 1 de C vers B
+deplacer disque 3 de A vers C
+deplacer disque 1 de B vers A
+deplacer disque 2 de B vers C
+deplacer disque 1 de A vers C
+#+end_example
+
+* Exercice 4: Tri fusion
+
+Cet exercice a pour but d'implémenter un algorithme de tri de type /diviser pour régner/; le *tri fusion*. Pour trier une liste ~L~, l'idée est la suivante:
+
+- On découpe ~L~ en deux morceaux ~L1~ et ~L2~, et on les trie séparément.
+- On fusionne les deux listes triées, afin d'obtenir un tri de la liste entière ~L~.
+
+** Question a:
+
+Écrire une fonction ~fusion~, qui prend en entrée deux listes _triées_ ~L1~ et ~L2~, et renvoie une liste triée ~L_fusion~ contenant les entrées de ~L1~ et ~L2~.
+
+** Question b:
+
+Utiliser la fonction ~fusion~ pour écrire une fonction ~tri_fusion~ qui implémente le tri fusion.
+
+# Local Variables:
+# ispell-local-dictionary: "francais-tex"
+# End:
+
+#  LocalWords:  Hanoï
