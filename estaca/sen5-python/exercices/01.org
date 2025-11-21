@@ -1,4 +1,4 @@
-#+title: Introduction Python: Exercices 1
+#+title: Exercices 1
 
 #+property: header-args :results output
 

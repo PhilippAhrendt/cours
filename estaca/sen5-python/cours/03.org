@@ -1,4 +1,4 @@
-#+title: Introduction Python: Séance 3
+#+title: Séance 3: Algorithmique
 
 #+property: header-args :results output
 
@@ -157,6 +157,8 @@ On peut aussi faire de la récursion sur autre chose que les entiers
 *Exemple:* Représentation infixe d'un arbre de recherche
 
 Il est souvent utile de stocker des données sous forme d'un *arbre*. Voici une illustration d'un arbre binaire:
+
+# Finir cette partie: expliquer l'algo, sans code (peut-être faire cela en exo avec de l'orienté objet... (exam?))
 
 * Diviser pour régner
 
