@@ -61,7 +61,7 @@ Il y a des problèmes qui sont plus simples à résoudre si on les pose de mani�
 
 *Exemple:* Les tours de Hanoi
 
-Dans le jeu des /tours de Hanoi/, on a 3 piliers et n disques troués de différentes tailles, que l'on peut empiler sur les piliers. Au départ, tous les disques sont empilés, du plus grand au plus petit, sur l'un des piliers. Le but du jeu est de déplacer les disques, un par un, jusqu'à ce qu'ils soient empilé sur un autre pilier, du plus grand au plus petit. Cela en suivant les règles suivantes.
+Dans le jeu des /tours de Hanoi/, on a 3 piliers, notés A,B et C, et n disques troués de différentes tailles, que l'on peut empiler sur les piliers. Au départ, tous les disques sont empilés, du plus grand au plus petit, sur l'un des piliers. Le but du jeu est de déplacer les disques, un par un, jusqu'à ce qu'ils soient empilé sur un autre pilier, du plus grand au plus petit. Cela en suivant les règles suivantes.
 
 - On ne peut déplacer une pile que lorsqu'elle se trouve en haut d'une pile
 - On ne peut pas placer un disque au-dessus d'un disque plus petit.
@@ -69,6 +69,7 @@ Dans le jeu des /tours de Hanoi/, on a 3 piliers et n disques troués de différ
 Voici une illustration d'une suite d'emplacement que l'on peut faire, dans le but de déplacer la pile du pilier 1 au pilier 3.
 
 #+begin_example
+     A             B             C
 
      ||            ||            ||
     =||=           ||            ||
@@ -100,7 +101,7 @@ Voici une illustration d'une suite d'emplacement que l'on peut faire, dans le bu
 =====||=====       ||          ==||==                                        ||            ||       =====||=====
 #+end_example
 
-*Problème:* Trouver un algorithme pour déplacer les disques, de sorte que la pile se déplace d'un pilier vers un autre, par exemple de 1 vers 3.
+*Problème:* Trouver un algorithme pour déplacer les disques, de sorte que la pile se déplace d'un pilier vers un autre, par exemple de A vers C.
 
 *Idée:* Il y a une manière de formuler la solution sur n disques en termes de la solution sur n-1 disques. En voici une illustration:
 
@@ -114,7 +115,7 @@ Voici une illustration d'une suite d'emplacement que l'on peut faire, dans le bu
 =====||=====       ||            ||          |
                                              |
                    |                         |
-                   |  Hanoi(4,1 -> 2)        |
+                   |  Hanoi(4,A -> B)        |
                    |                         |
                    V                         |
                                              |
@@ -126,8 +127,8 @@ Voici une illustration d'une suite d'emplacement que l'on peut faire, dans le bu
 =====||=====   ====||====        ||          |
                                              |
                    |                         |
-                   |  Deplacer disque 5      |  Hanoi(5,1 -> 3)
-                   |  de 1 vers 3            |
+                   |  Deplacer disque 5      |  Hanoi(5,A -> C)
+                   |  de A vers C            |
                    V                         |
                                              |
      ||            ||            ||          |
@@ -138,7 +139,7 @@ Voici une illustration d'une suite d'emplacement que l'on peut faire, dans le bu
      ||        ====||====   =====||=====     |
                                              |
                    |                         |
-                   |  Hanoi(4,2 -> 3)        |
+                   |  Hanoi(4,B -> C)        |
                    |                         |
                    V                         |
                                              |

@@ -15,7 +15,7 @@
 
 * Exercice 1: Palindromes
 
-Un palindrome est une chaîne de caractères qui reste la même lorsqu'on inverse l'ordre des caractères. Par exemple, /kayak/ et /elle/ sont des palindromes. On considère aussi que la chaîne vide ~""~ est un palindrome, et que toute chaîne à un seul caractère, comme par exemple ~"a"~​, est un palindrome. Écrire une fonction ~palindrome~ qui teste si une chaîne de caractères est un palindrome ou non.
+Un palindrome est une chaîne de caractères qui reste la même lorsqu'on inverse l'ordre des caractères. Par exemple, /kayak/ et /elle/ sont des palindromes. On considère aussi que la chaîne vide ~""~ est un palindrome, et que toute chaîne à un seul caractère, comme par exemple ~"a"~ , est un palindrome. Écrire une fonction ~palindrome~ qui teste si une chaîne de caractères est un palindrome ou non.
 
 * Exercice 2: Tri par insertion récursif
 
@@ -39,7 +39,7 @@ Dans cet exercice, on va implémenter la solution récursive du jeu des /tours d
 
 La représentation du jeu est la suivante:
 
-- Les trois piliers sont représentés par les caractères ~'A'~​, ~'B'~ et ~'C'~.
+- Les trois piliers sont représentés par les caractères ~'A'~ , ~'B'~ et ~'C'~.
 - Un nombre ~n~ représente le nombre de disques dans le jeu.
 
 Écrire une fonction ~hanoi(n,P1,P2)~, qui prend en entrée le nombre ~n~ de piliers, le pilier de départ ~P1~ et d'arrivée ~P2~, et qui affiche une par une les instructions pour déplacer ~n~ piliers de ~P1~ vers ~P2~.
