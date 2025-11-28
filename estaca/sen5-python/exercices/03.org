@@ -12,6 +12,12 @@
 - [[#exercice-4-tri-fusion][Exercice 4: Tri fusion]]
   - [[#question-a-1][Question a:]]
   - [[#question-b-1][Question b:]]
+- [[#exercice-5-chemins-dans-un-graphe][Exercice 5: Chemins dans un graphe]]
+- [[#exercice-6-sous-listes-croissantes][Exercice 6: Sous-listes croissantes]]
+  - [[#question-a-2][Question a:]]
+  - [[#question-b-2][Question b:]]
+  - [[#question-c-1][Question c:]]
+  - [[#question-d][Question d:]]
 
 * Exercice 1: Palindromes
 
@@ -71,8 +77,39 @@ Cet exercice a pour but d'implémenter un algorithme de tri de type /diviser pou
 
 Utiliser la fonction ~fusion~ pour écrire une fonction ~tri_fusion~ qui implémente le tri fusion.
 
+* Exercice 5: Chemins dans un graphe
+
+Implémenter l'algorithme pour trouver le chemin le plus court dans un graphe, vu en cours.
+
+* Exercice 6: Sous-listes croissantes
+
+Si ~L~ est une liste de nombres, une /sous-liste croissante/ de ~L~ est donnée par une suite d'indices ~i_1 < i_2 ... < i_k~ tels que ~L[i_1] <= L[i_2] ... <= L[i_k]~. Le but de cet exercice est de construire un algorithme ~crois(L)~ qui trouve, pour une liste ~L~, la longueur de la sous-liste croissante la plus longue.
+
+*Exemple*:
+
+- ~L = [1,8,6,4,5,7,2,5]~
+- sous-liste la plus longue: ~[1,4,5,7]~
+- ~crois(L) == 4~
+
+** Question a:
+
+Pour un indice i de la liste, notons ~crois(L,i)~ la longueur de la sous-liste croissante la plus longue qui commence à l'indice i. Donner une formule pour ~crois(L)~ en termes des ~crois(L,i)~.
+
+** Question b:
+
+Notons _i_ l'ensemble des indices j > i tels que L[j] >= L[i]. Donner une formule pour ~crois(L,i)~ en termes des ~crois(L,j)~, pour j \in _i_.
+
+
+** Question c:
+
+En déduire un algorithme récursif (diviser pour régner) pour calculer ~crois(L)~ et l'implémenter. Estimer sa complexité.
+
+** Question d:
+
+Implémenter un algorithme suivant une approche de programmation dynamique. Estimer sa complexité
+
 # Local Variables:
 # ispell-local-dictionary: "francais-tex"
 # End:
 
-#  LocalWords:  Hanoï
+#  LocalWords:  Hanoï Sous-listes sous-liste

@@ -405,6 +405,8 @@ L'algorithme que l'on obtient est:
   + Mise à jour de ~C~: ~C = C_tmp~
 - Rendre ~C~ en résultat
 
+On peut "lire" directement la complexité de cet algorithme: On a 3 boucles imbriquées de n étapes, avec un nombre constant d'opérations dans chacune. La complexité est donc de l'ordre de n^{3}: bien meilleure que pour l'approche "diviser pour régner"!
+
 # Local Variables:
 # ispell-local-dictionary: "francais-tex"
 # End:
