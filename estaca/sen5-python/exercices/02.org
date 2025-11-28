@@ -1,6 +1,7 @@
 #+title: Exercices 2
 
 #+property: header-args :results output
+#+exclude_tags: toc
 
 * Table de matières :toc:
 - [[#exercice-1-recherche-de-motif][Exercice 1: Recherche de motif]]

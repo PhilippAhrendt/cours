@@ -1,6 +1,7 @@
 #+title: Exercices 3
 
 #+property: header-args :results output
+#+exclude_tags: toc
 
 * Table de matières :toc:
 - [[#exercice-1-palindromes][Exercice 1: Palindromes]]

@@ -1,6 +1,7 @@
 #+title: Séance 3: Algorithmique
 
 #+property: header-args :results output
+#+exclude_tags: toc
 
 * Table de matières :toc:
 - [[#généralités-dalgorithmique-et-de-complexité][Généralités d'algorithmique et de complexité]]

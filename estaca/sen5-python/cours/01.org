@@ -1,6 +1,7 @@
 #+title: Séance 1: Données et opérations de base
 
 #+property: header-args :results output
+#+exclude_tags: toc
 
 * Table de matières :toc:
 - [[#types-et-opérations-simples][Types et opérations simples]]
