@@ -365,7 +365,7 @@ Explicitement, on veut une fonction ~chemins(n,E)~, où ~n~ est le nombre de nœ
 
 On peut associer à ce problème les sous-problèmes suivants:
 
-*Sous-problèmes:* Pour 0 \leq k \leq n, trouver, pour tout i,j, le chemin le plus court /en n'utilisant que les nœuds 1,...,k comme nœuds intermédiaires/. On va noter la solution ~chemins_aux(n,E,k)~
+*Sous-problèmes:* Pour 0 \le k \le n, trouver, pour tout i,j, le chemin le plus court /en n'utilisant que les nœuds 1,...,k comme nœuds intermédiaires/. On va noter la solution ~chemins_aux(n,E,k)~
 
 C'est-à-dire:
 - k = 0: aucun nœud intermédiaire, ~chemins_aux(n,E,0)[i][j] == 1~ si ~(i,j)~ est dans ~E~, et ~"infini"~ sinon.
@@ -397,10 +397,10 @@ L'algorithme que l'on obtient est:
 ~def chemins(n,E):~
 
 - Construire ~C = chemins(n,E,0)~
-- Pour 0 \leq k \leq n
+- Pour 0 \le k \le n
   + Nouvelle matrice intermédiaire ~C_tmp~, avec ~C_tmp[i][j] = "infini"~ partout
-  + Pour 0 \leq i \leq n
-    - Pour 0 \leq j \leq n
+  + Pour 0 \le i \le n
+    - Pour 0 \le j \le n
       + ~C_tmp[i][j] = min(C[i][j], C[i][k+1] + C[k+1][j])~
   + Mise à jour de ~C~: ~C = C_tmp~
 - Rendre ~C~ en résultat
