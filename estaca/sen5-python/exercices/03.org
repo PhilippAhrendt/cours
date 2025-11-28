@@ -97,7 +97,7 @@ Pour un indice i de la liste, notons ~crois(L,i)~ la longueur de la sous-liste c
 
 ** Question b:
 
-Notons _i_ l'ensemble des indices j > i tels que L[j] >= L[i]. Donner une formule pour ~crois(L,i)~ en termes des ~crois(L,j)~, pour j \in _i_.
+Notons I l'ensemble des indices j > i tels que L[j] >= L[i]. Donner une formule pour ~crois(L,i)~ en termes des ~crois(L,j)~, pour j \in I.
 
 
 ** Question c:
