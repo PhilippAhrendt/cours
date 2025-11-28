@@ -289,10 +289,6 @@ Cela permet d'estimer l'ordre de complexité à C(n) = O(log(n))
 
 /Voir exercices/
 
-*Exemple:* Recherche de médiane
-
-/Voir exercices/
-
 * Programmation dynamique
 
 Regardons de plus près l'algorithme récursif, de type "diviser pour régner", pour calculer la suite de fibonacci.
