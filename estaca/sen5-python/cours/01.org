@@ -40,8 +40,6 @@ print("type de", pi, ":", type(pi),"\n")
 phrase = "Hello World!"
 print("type de", phrase, ":", type(phrase),"\n")
 
-t = (0 == 0)
-print("type de", t, ":", type(t),"\n")
 
 f = (1 == 0)
 print("type de", f, ":", type(f),"\n")
@@ -156,6 +154,11 @@ else:
 print(a)
 #+end_src
 
+#+RESULTS:
+#+begin_example
+4
+#+end_example
+
 *Important:* En python, l'intérieur d'une clause est marqué par un alinéa. EN général, cela replace les accolades ~{ }~ de C++. Normalement l'éditeur va mettre automatiquement les bons espaces au début. Le code _ne fonctionne pas_ si les alinéas ne sont pas bons.
 
 Dans des clauses imbriquées, on empile les alinéas.
@@ -263,7 +266,7 @@ print(f(x,n))
 
 Ici encore, pas besoin de donner les types d'entrée, ni de sortie quand on déclare une fonction. Les types sont déterminés par le contenu de la fonction. ~f~ contient une itération de ~0~ à ~n~, ce qui nécessite que ~n~ soit de type ~int~. Mettre autre chose (par exemple un ~float~) à la place de ~n~ donne une erreur de type.
 
-Les fonctions permettent d'organiser le code en sous parties simples et réutilisables. Si on utilise plusieurs fois une même séquence d'instructions, on la mettre dans une fonction et appeler celle-ci quand on en a besoin. Cela a plusieurs avantages:
+Les fonctions permettent d'organiser le code en sous parties simples et réutilisables. Si on utilise plusieurs fois une même séquence d'instructions, on peut la mettre dans une fonction et appeler celle-ci quand on en a besoin. Cela a plusieurs avantages:
 
 - *Efficacité*
   + Moins de lignes de code à écrire

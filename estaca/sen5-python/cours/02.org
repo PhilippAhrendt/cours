@@ -11,7 +11,7 @@
 
 * Données composites
 
-A part les types basiques ~int~, ~float~, ~bool~ et ~str~, python donne plusieurs manières de construire d'en construire des structures de données plus complexes, comme par exemple des *listes*. En général, ces structures sont définies par des champs contenant des objets de type arbitraire.
+A part les types basiques ~int~, ~float~, ~bool~ et ~str~, python donne plusieurs manières d'en construire des structures de données plus complexes, comme par exemple des *listes*. En général, ces structures sont définies par des champs contenant des objets de type arbitraire.
 
 Voici les types composites les plus importants:
 

@@ -71,7 +71,7 @@ def g_bis_int(n):
 
 ** Question b: Recherche dichotomique
 
-Une manière de calculer efficacement l'inversion entière d'une fonction est par *recherche dichotomique*. Dans un premier temps, on va supposer que la fonction f vérifie n \le f(n). Le but toujours de trouver g(n):
+Une manière de calculer efficacement l'inversion entière d'une fonction est par *recherche dichotomique*. Dans un premier temps, on va supposer que la fonction f vérifie n \le f(n). Le but est toujours de trouver g(n):
 
 - g(n)=k, où k est le plus grand entier tel que f(k) \le n.
 
@@ -93,7 +93,7 @@ Comment peut-on adapter cette fonction pour qu'elle marche sur n'importe quelle 
 
 ** Question c: Recherche dichotomique sur les nombres réels
 
-On peut utiliser le même principe pour approcher l'inverse sur les nombres réels. Une fonction inverse approchée d'une fonction f(x) est une fonction g(y) telle que |g(f(x))-x| \le \epsilon, pour une tolérance d'erreur \epsilon > 0 choisi au préalable.
+On peut utiliser le même principe pour approcher l'inverse sur les nombres réels. Une fonction inverse approchée d'une fonction f(x) est une fonction g(y) telle que |g(f(x))-x| \le \epsilon, pour une tolérance d'erreur \epsilon > 0 choisie au préalable.
 
 Adapter l'algorithme précédent pour écrire une fonction ~inv_dicho~, qui prend en entrée une fonction f, un nombre x, et un nombre positif \epsilon, et trouve g(x) avec une erreur maximale de \epsilon.
 

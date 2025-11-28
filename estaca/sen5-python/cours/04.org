@@ -1,0 +1,6 @@
+#+title: Séance 4: Programmation orientée objet
+
+
+# Local Variables:
+# ispell-local-dictionary: "francais-tex"
+# End:
