@@ -24,6 +24,14 @@
 
 Un palindrome est une chaîne de caractères qui reste la même lorsqu'on inverse l'ordre des caractères. Par exemple, /kayak/ et /elle/ sont des palindromes. On considère aussi que la chaîne vide ~""~ est un palindrome, et que toute chaîne à un seul caractère, comme par exemple ~"a"~ , est un palindrome. Écrire une fonction ~palindrome~ qui teste si une chaîne de caractères est un palindrome ou non.
 
+#+begin_src python
+def palindrome(c):
+    if len(c) <= 1:
+        return True
+    else:
+        return (c[0] == c[-1]) and palindrome(c[1:len(c)-1])
+#+end_src
+
 * Exercice 2: Tri par insertion récursif
 
 Dans cet exercice, on va reformuler le tri par insertion comme un algorithme récursif. Dans un premier temps, on va considérer une version qui ne manipule pas la liste d'entrée ~L~, mais qui rend une nouvelle liste ~L_t~ triée contenant les mêmes entrées que ~L~.
@@ -32,10 +40,33 @@ Dans cet exercice, on va reformuler le tri par insertion comme un algorithme ré
 
 Écrire une fonction ~inser(L,n)~, qui prend en entrée une liste ~L~, que l'on suppose triée, et un nombre ~n~, et renvoie la liste triée ~L_1~ obtenue en rajoutant ~n~ à ~L~.
 
+#+begin_src python
+def inser(L,n):
+    L_1 = []
+    i = 0
+    while i < len(L) and L[i] < n:
+        L_1.append(L[i])
+        i += 1
+    L_1.append(n)
+    for i in range(i,len(L)):
+        L_1.append(L[i])
+    return L_1
+
+print(inser([1,5,8,9],7))
+
+#+end_src
+
 ** Question b:
 
 Utiliser la fonction ~inser~ pour écrire une fonction récursive ~tri_insertion_rec~ qui implémente le tri par insertion.
 
+#+begin_src python
+def tri_insertion_rec(L):
+    if len(L) == 0:
+        return L
+    else:
+        return inser(tri_insertion_rec(L[0:len(L)-1]),L[len(L)-1])
+#+end_src
 ** Question c:
 
 Écrire une fonction récursive ~tri_insertion_rec_direct(L)~ qui trie directement la liste d'entrée ~L~.
@@ -99,7 +130,6 @@ Pour un indice i de la liste, notons ~crois(L,i)~ la longueur de la sous-liste c
 ** Question b:
 
 Notons I l'ensemble des indices j > i tels que L[j] >= L[i]. Donner une formule pour ~crois(L,i)~ en termes des ~crois(L,j)~, pour j \in I.
-
 
 ** Question c:
 

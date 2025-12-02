@@ -58,8 +58,25 @@ Les performances "worst case" sont généralement plus simples à analyser. On v
 *Exemple:* Analysons le *tri par insertion* (voir feuille d'exercices 2).
 
 #+begin_src python
+def insertion(L):
+    for i in range(len(L)):
+        a = i
+        tmp = L[i]
+        while a > 0 and L[a-1] > tmp:
+            L[a] = L[a-1]
+            L[a-1] = tmp
+            a = a - 1
 
+L = [0,5,1,6,9,2]
+insertion(L)
+print(L)
 #+end_src
+
+#+RESULTS:
+#+begin_example
+[0, 6, 6, 8, 8, 8]
+#+end_example
+
 
 - /Quel est le "worst case" pour cet algorithme/?
 
