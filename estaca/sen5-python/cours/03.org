@@ -66,28 +66,43 @@ def insertion(L):
             L[a] = L[a-1]
             L[a-1] = tmp
             a = a - 1
-
-L = [0,5,1,6,9,2]
-insertion(L)
-print(L)
 #+end_src
-
-#+RESULTS:
-#+begin_example
-[0, 6, 6, 8, 8, 8]
-#+end_example
-
 
 - /Quel est le "worst case" pour cet algorithme/?
 
+  A l'étape i, on "propage en arrière" l'élément i jusqu'à sa place parmi les élément précédents. Au pire, on est obligé de parcourir tous les indices avant i, ce qui arrive quand ~L[i]~ est plus petit que tous les éléments avant. On peut donc voir que le pire des cas est de trier une liste qui est triée à l'envers au départ.
+
 - /Asymptotiquement, combien de comparaisons entre éléments faut-il faire au pire des cas?/
 
+  On veut estimer le nombre d'opérations en fonction de la longueur n de la liste à trier. On voit que l'algorithme a deux boucles "imbriquées". La boucle extérieure fait n itérations. A l'intérieur de cette boucle, il y a quelques opérations simples, et une boucle ~while~. On vient de voir que, à l'itération i, la boucle intérieure peut faire jusqu'à i itérations, et faire un nombre constant d'opérations à chaque fois. On peut négliger le comptage exact des opérations et se concentrer sur le fait que le nombre d'opérations augmente linéairement avec chaque itération. Cela suffit pour voir que le nombre d'itérations est \simeq \sum_{0 \leq i \leq n}i. On pourrait aussi donner un argument mathématiquement "propre", du style
+  - K_{1} = opérations avant la boucle ~for~
+  - K_{2} = opérations avant la boucle ~while~
+  - K_{3} = opérations dans la boucle ~while~
+
+  C(n) = K_{1} + \sum_{0 \leq i \leq n}(K_{2 }+ \sum_{0 \leq j \leq i}K_{3})= K_{3}\sum_{0 \leq i \leq n}i + K_{2}n + K_{3} \sim \sum_{0 \leq i \leq n}i (les autres termes vont être petits en comparaison quand n \rightarrow \infty)
+
+  Pour estimer \sum_{0 \leq i \leq n}i, on peut soit se rappeler que cette somme vaut n(n-1)/2 \simeq n^{2}, soit utiliser des arguments encore plus élémentaires, comme,
+
+  (n/2)^{2} = \sum_{n/2 \leq i \leq n}n/2 \leq \sum_{n/2 \leq i \leq n}i \leq \sum_{0 \leq i \leq n}i \leq \sum_{i \leq 0 \leq n}n = n^{2}
+
+  En tout cas, la complexité estimée est de l'ordre de n^{2}.
 
 *Exemple:* Recherche "naïve" vs. recherche dichotomique
 
 - /Lequel des deux algorithmes est plus efficace?/
 
+  Sans faire une analyse formelle, on peut voir que la recherche naïve dans une liste triée parcourt, au pire des cas, toute la liste, et la moitié de la liste en moyenne. En revanche, dans la recherche dichotomique, chaque étape réduit à moitié la partie de la liste dans laquelle on cherche. Cela veut dire qu'une grande partie de la liste (bien plus que la moitié) n'est jamais regardée. Cela indique déjà clairement que la recherche dichotomique est plus efficace. L'analyse des complexités dans la question suivante montre à quel point elle est plus efficace.
+
 - /Quelles sont les complexités asymptotiques?/
+
+  Pour la recherche naïve c'est simple: on parcourt un par un les éléments de la liste jusqu'à ce qu'on trouve le bon élément. Au pire on regarde chacun des n éléments. La complexité est de l'ordre de n.
+
+  Pour la recherche dichotomique, chaque étape réduit à moitié la partie considérée de la liste. Au pire cela continue jusqu'à ce qu'il reste un seul élément dans cette partie. Si on suppose que la liste contient n = 2^{k} éléments, la première étape réduit le champ de recherche à n/2 = 2^{k-1} éléments, la deuxième étape réduit cela à n/4 = 2^{k-2} et ainsi de suite. On peut répéter cela au plus k fois. Donc pour n = 2^{k}, la complexité est de l'ordre de k. Pour n quelconque, on peut déjà deviner que la complexité est de l'ordre de log(n). L'argument mathématique est simple: on peut trouver un k tel que
+
+  2^{k} \leq n \leq 2^{k+1} \Rightarrow k \leq log(n) \leq k+1
+
+  On sait que la complexité pour n est entre k et k+1, et les inégalités ci-dessus montrent que k est la partie entière de log(n). Donc asymptotiquement la complexité est log(n).
+
 
 ** Paradigmes algorithmiques
 
@@ -325,6 +340,26 @@ def fibonacci(n):
 
 - /Quelle est la complexité de cet algorithme?/
 
+  Un problème de taille n est divisé en un sous-problème de taille n-1 et un sous-problème de taille n-2, avec un nombre constant K d'opérations pour décomposer et combiner. La formule récursive pour la complexité est donc
+
+  C(n) = C(n-1) + C(n-2) + K
+
+  Pour faire simple, on peut raisonner sur les inégalités
+
+  2C(n-2) + K \leq C(n) \leq 2C(n-1) + K
+
+  La formule à droite est assez standard, et on peut la développer en
+
+  C(n) \leq C(0) \times 2^{n} + K \times \sum_{0 \leq i < n}2^{i} = C(0) \times 2^{n} + K \times (2^{n} - 1)
+
+  Ce qui est de l'ordre de 2^{n}. (En bref, c'est la partie 2C(n-1) qui compte ici)
+
+  La formule à gauche peut être transformée en la première en prenant C'(n) = C(2n), on a alors
+
+  C'(n) \geq 2C'(n-1) + K
+
+  Donc C'(n) est plus grand qu'une suite d'ordre 2^{n}, et donc C(n) = C'(n/2) est au moins d'ordre 2^{n/2} = (2^{1/2})^{n} (strictement on n'a montré cela que pour les n pairs, mais on a quelque chose de similaire pour les n impairs). On pourrait raffiner l'analyse, mais l'important est de voir que cet algorithme a une complexité exponentielle. Il devient donc rapidement très coûteux!
+
 *Problème:* On recalcule plusieurs fois les mêmes valeurs, ce n'est pas nécessaire!
 
 On peut éviter cela en faisant des *sauvegardes* des solutions déjà trouvées. Au lieu de recalculer des solutions, on accède à des valeurs existants.
@@ -346,6 +381,8 @@ def fibonacci(n):
 #+end_src
 
 - /Quelle est la complexité de cet algorithme?/
+
+  Cet algorithme a une seule boucle à n itérations, avec un nombre constant d'opérations à chaque itération. On a donc une complexité de n, bien meilleure que la version "diviser pour régner" de l'algorithme!
 
 Dans cet, exemple, on garde toujours une valeur précédente en mémoire, à savoir ~a~. Lorsqu'on en a besoin, il suffit d'accéder à la valeur sauvegardée.
 

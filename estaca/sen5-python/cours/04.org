@@ -21,7 +21,7 @@ La représentation interne est l'ensemble des données regroupées dans l'objet.
 #+begin_src cpp
 struct chain {
   int head; /* premier élément de la liste */
-  list *tail; /* adresse du prochain bloc, on fait une chaine */
+  chain *tail; /* adresse du prochain bloc, on fait une chaine */
 };
 
 struct list {

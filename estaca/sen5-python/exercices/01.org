@@ -22,6 +22,12 @@ Les années bissextiles (les années avec 29 jours en février au lieu de 28) so
 
 Écrire une fonction ~bissextile~ qui prend en entrée un entier (représentant l'année) et retourne ~True~ si l'année est bissextile, et ~False~ sinon.
 
+*Réponse:*
+#+begin_src python
+def bissextile(n):
+    return (n % 4 == 0 and n % 100 != 0) or n % 400 == 0
+#+end_src
+
 * Exercice 2: Algorithme d'Euclide
 
 Le plus grand diviseur commun de deux entiers non nuls n,m, noté pgcd(n,m), est le plus grand entier k tel que n/k et m/k soient tous les deux entiers. Les deux propriétés suivantes sont vérifiées par le pgcd:
@@ -33,9 +39,22 @@ Le plus grand diviseur commun de deux entiers non nuls n,m, noté pgcd(n,m), est
 
 Utiliser les deux propriétés ci-dessus pour écrire une fonction ~pgcd~, qui prend en entrée deux entiers, et donne en sortie leur pgcd.
 
+*Réponse:*
+#+begin_src python
+def pgcd(n,m):
+    a,b = n,m
+    while a % b != 0:
+        a,b = b,a%b
+    return b
+#+end_src
+
 ** Question b:
 
 Pouvez-vous expliquer pourquoi cette fonction finit toujours par rendre un résultat (i.e pourquoi elle ne peut jamais tourner à l'infini)? Pouvez-vous expliquer pourquoi elle calcule bien le pgcd?
+
+*Réponse:* L'algorithme termine au plus tard quand ~b = 1~ (~b~ ne peut pas devenir nul ou négatif: à chaque itération c'est le reste positif d'un nombre positif, et la condition d'arrêt de la boucle empêche ~b = 0~). On a toujours ~a%b < b~, donc ~b~ décroît strictement à chaque itération. Cela montre que ~b~ finit toujours par atteindre 1, si l'algorithme ne termine pas avant cela.
+
+Pour voir que l'algorithme calcule le pgcd, il suffit de regarder les conditions 1 et 2. On peut voir que les itérations de la boucle laissent "invariante" la condition 2: si, avant une itération, on a pgcd(a,b)=pgcd(n,m), alors on a pgcd(b,a%b)=pgcd(a,b)=pgcd(n,m). C'est vrai au départ, quand a,b=n,m, et donc cela reste vrai tant que l'algorithme tourne. La condition 2. est ce qu'on appelle un "invariant de boucle" pour la boucle while. Quand l'algorithme termine, on peut regarder la condition 1, qui dit que b=pgcd(a,b)=pgcd(n,m).
 
 * Exercice 3: Recherche de fonctions inverses
 
@@ -70,6 +89,26 @@ def g_bis_int(n):
     return math.floor(n**(1/3)-5)
 #+end_src
 
+*Réponse:*
+#+begin_src python
+def inv_int(f,n):
+    k = 0
+
+    # Manière simple de chercher: on teste jusqu'où f(k) < 1
+    while f(k) <= n:
+        k += 1
+
+    # La même chose si k est trop grand
+    # Cette boucle étant placée après la première, elle s'occupe aussi
+    # de ajustements si besoin; on cherche le k juste avant de sortir de la première boucle,
+    # que l'on retrouve avec une itération de la deuxième. Ceci n'est pas symétrique;
+    # en allant vers les négatifs, le k cherché est bien celui qui sort de cette boucle.
+    while f(k) > n:
+        k -= 1
+
+    return k
+#+end_src
+
 ** Question b: Recherche dichotomique
 
 Une manière de calculer efficacement l'inversion entière d'une fonction est par *recherche dichotomique*. Dans un premier temps, on va supposer que la fonction f vérifie n \le f(n). Le but est toujours de trouver g(n):
@@ -90,7 +129,62 @@ L'algorithme de recherche dichotomique consiste à diminuer progressivement l'in
 
 Écrire une fonction ~inv_int_dicho~ qui prend une fonction f et un entier n, et trouve l'inverse g(n) par recherche dichotomique.
 
+*Réponse:*
+#+begin_src python
+
+# Première version; avec un intervalle de départ [0,n] fixe
+def inv_int_dicho(f,n):
+    k_min,k_max = 0,n
+    k = (k_min+k_max)//2
+
+    while (f(k) <= n and f(k+1) <= n) or f(k) > n:
+        if f(k) <= n:
+            k_min = k
+        else:
+            k_max = k
+
+        k = (k_min+k_max)//2
+
+    return k
+
+#+end_src
+
 Comment peut-on adapter cette fonction pour qu'elle marche sur n'importe quelle fonction croissante?
+
+*Réponse:*
+#+begin_src python
+def inv_int_dicho_bis(f,n):
+
+    # On commence par trouver un intervalle qui marche
+    # Pour faire simple, on multiplie juste par 2 d'un cote ou l'autre
+    # jusqu'à ce que f(k_min) <= n <= f(k_max)
+    if f(0) < n:
+        k_min = 0
+        k_max = 1
+
+        while f(k_max) < n:
+            k_max *= 2
+
+    else:
+        k_max = 0
+        k_min = -1
+
+        while f(k_min) > n:
+            k_min *= 2
+
+    # Le reste est juste le même algorithme
+    k = (k_min+k_max)//2
+
+    while (f(k) <= n and f(k+1) <= n) or f(k) > n:
+        if f(k) <= n:
+            k_min = k
+        else:
+            k_max = k
+
+        k = (k_min+k_max)//2
+
+    return k
+#+end_src
 
 ** Question c: Recherche dichotomique sur les nombres réels
 
@@ -98,6 +192,34 @@ On peut utiliser le même principe pour approcher l'inverse sur les nombres rée
 
 Adapter l'algorithme précédent pour écrire une fonction ~inv_dicho~, qui prend en entrée une fonction f, un nombre x, et un nombre positif \epsilon, et trouve g(x) avec une erreur maximale de \epsilon.
 
+#+begin_src python
+def inv_dicho(f,x,eps):
+    if f(0) < x:
+        r_min = 0
+        r_max = 1
+
+        while f(r_max) < x:
+            r_max *= 2
+
+    else:
+        r_max = 0
+        r_min = -1
+
+        while f(r_min) > x:
+            r_min *= 2
+
+    r = (r_min+r_max)/2
+
+    while f(r) < x - eps or f(r) > x + eps:
+        if f(r) < x - eps:
+            r_min = r
+        else:
+            r_max = r
+
+        r = (r_min+r_max)/2
+
+    return r
+#+end_src
 
 # Local Variables:
 # ispell-local-dictionary: "francais"

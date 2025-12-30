@@ -25,11 +25,39 @@
 - ~motif("gori", "algorithme") = True~
 - ~motif("agor", "algorithme") = False~
 
+*Réponse:*
+#+begin_src python
+def motif(m,c):
+    return m in c
+
+# Ceci est effectivevment accepté par python
+# mais pour la question suivante il va falloir écrire l'algorithme pour trouver un motif...
+
+#+end_src
+
 ** Question b:
 Écrire une fonction ~motif_occ~ qui prend en entrée deux chaînes de caractères et renvoie le nombre de fois que la première chaîne apparaît dans la deuxième. Deux apparitions distinctes peuvent partager des caractères.
 
 *Exemple:*
 - ~motif_occ("aba","ababa") = 2~
+
+*Réponse:*
+#+begin_src python
+def motif_occ(m,c):
+    occ = 0
+
+    for i in range(len(c)):
+        occurence = True
+        for j in range(len(m)):
+            if i+j >= len(c) or not m[j] == c[i+j]:
+                occurence = False
+                break
+
+        if occurence:
+            occ += 1
+
+    return occ
+#+end_src
 
 * Exercice 2: Opérations de base sur les listes
 
@@ -37,9 +65,41 @@
 
 Écrire des fonctions ~l_max~ et ~l_min~, qui prennent en entrée une liste de nombres et renvoient, respectivement son plus grand et plus petit élément. Ces fonctions ne doivent pas utiliser les fonctions ~max~ et ~min~ de python.
 
+*Réponse:*
+#+begin_src python
+def l_max(L):
+    x = L[0]
+
+    for e in L:
+        if e > x:
+            x = e
+
+    return x
+
+def l_min(L):
+    x = L[0]
+
+    for e in L:
+        if e < x:
+            x = e
+
+    return x
+#+end_src
+
 ** Question b:
 
 Écrire une fonction ~moy~ qui prend en entrée une liste de nombres et renvoie la moyenne de ses éléments.
+
+*Réponse:*
+#+begin_src python
+def moy(L):
+    x = 0
+
+    for e in L:
+        x += e
+
+    return x/len(L)
+#+end_src
 
 * Exercice 3: Algorithmes de tri
 
@@ -51,11 +111,43 @@ Dans le tri par insertion, l'idée est de parcourir de parcourir la liste en la 
 
 Écrire une fonction ~tri_insertion~, qui prend en entrée une liste, et la trie en faisant le tri par insertion.
 
+*Réponse:*
+#+begin_src python
+def tri_insertion(L):
+    for i in range(len(L)):
+        a = i
+        tmp = L[i]
+        while a > 0 and L[a-1] > tmp:
+            L[a] = L[a-1]
+            L[a-1] = tmp
+            a = a - 1
+#+end_src
+
 ** Question b: Tri par sélection
 
 Dans le tri par sélection, on cherche successivement les éléments croissants de la liste, en commençant par le plus petit, et les mets dans le bon ordre au début de la liste. A l'étape i, on cherche le plus petit élément parmi les éléments i \le j < n. Quand on a trouvé cet élément en position j_{m}, on le déplace vers i, et on décale les autres éléments entre i et j_{m} vers l'avant. Quand on arrive à la fin, la liste est triée.
 
 Écrire une fonction ~tri_selection~, qui prend en entrée une liste, et la trie en faisant le tri par sélection.
+
+*Réponse:*
+#+begin_src python
+def tri_selection(L):
+    # Voici une version simple à écrire,
+    # qui "vide" L et crée une liste triée à sa place
+    L_triee = []
+
+    while len(L) > 0:
+        m,m_indice = L[0],0
+
+        for i in range(len(L)):
+            if L[i] < m:
+                m,m_indice = L[i],i
+
+        L_triee.append(L[i])
+        del(L[i])
+
+    return L_triee
+#+end_src
 
 * Exercice 4: Points au QCM
 
@@ -92,6 +184,25 @@ Les points sont attribués de la manière suivante:
 - Une question sans réponse donne 0 points
 
 Écrire une fonction une fonction ~correction_QCM~ prenant en entrée un dictionnaire de réponses étudiants et le corrigé, et renvoie en sortie un dictionnaire avec une entrée pour chaque étudiant contenant son résultat au QCM.
+
+*Réponse:*
+#+begin_src python
+def correction_QCM(reponses_etudiants,corrige):
+    resultats = {}
+
+    for etudiant in reponses_etudiants.keys():
+        points = 0
+
+        for reponse in reponses_etudiants[etudiant].keys():
+            if reponses_etudiants[etudiant][reponse] == corrige[reponse]:
+                points += 3
+            else:
+                points -= 1
+
+        resultats[etudiant] = points
+
+    return resultats
+#+end_src
 
 # Local Variables:
 # ispell-local-dictionary: "francais-tex"
