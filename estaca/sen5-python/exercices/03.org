@@ -289,7 +289,7 @@ Au pire des cas, pour une liste de longueur n, cet algorithme fait un appel réc
 
 C(n) = \sum_{0 \leq i \leq n}C(i) + K
 
-Pas besoin de calculer la complexité exacte (pour info, ceci correspond aux /nombres de catalan/), il suffit de voir que c'est pire que l'algorithme de fibonacci naïf, dont on sait que la complexité est exponentielle, et qu'on a donc une complexité au moins exponentielle, ou encore pire, pour cet algorithme.
+Pas besoin de calculer la complexité exacte (pour info, c'est de l'ordre 2^{n}), il suffit de voir que c'est pire que l'algorithme de fibonacci naïf, dont on sait que la complexité est exponentielle, et qu'on a donc une complexité au moins exponentielle, ou encore pire, pour cet algorithme.
 
 ** Question d:
 
