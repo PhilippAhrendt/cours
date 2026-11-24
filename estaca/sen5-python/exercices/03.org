@@ -113,32 +113,9 @@ Notons I l'ensemble des indices j > i tels que L[j] >= L[i]. Donner une formule 
 
 En déduire un algorithme récursif (diviser pour régner) pour calculer ~crois(L)~ et l'implémenter. Estimer sa complexité.
 
-Au pire des cas, pour une liste de longueur n, cet algorithme fait un appel récursif à tous les cas 0 <= i <= n (avec un nombre constant d'opérations pour diviser et combiner). La formule pour la complexité C(n) est donc
-
-C(n) = \sum_{0 \leq i \leq n}C(i) + K
-
-Pas besoin de calculer la complexité exacte (pour info, c'est de l'ordre 2^{n}), il suffit de voir que c'est pire que l'algorithme de fibonacci naïf, dont on sait que la complexité est exponentielle, et qu'on a donc une complexité au moins exponentielle, ou encore pire, pour cet algorithme.
-
 ** Question d:
 
 Implémenter un algorithme suivant une approche de programmation dynamique. Estimer sa complexité
-
-#+begin_src python
-def crois(L):
-    sous_longueurs = [1 for e in L]
-
-    for k in range(len(L)):
-        i = len(L) - k - 2
-        m = 0
-        for j in range(i+1,len(L)):
-            if L[j] >= L[i] and sous_longueurs[j] > m:
-                m = sous_longueurs[j]
-        sous_longueurs[i] = m+1
-
-    return max(sous_longueurs)
-#+end_src
-
-On peut remarquer que les 2 boucles imbriquées de cet algorithme sont très similaires à ceux du tri par insertion, ce qui nous donne une complexité de n^{2}, bien meilleure que l'approche naïve de diviser pour régner.
 
 # Local Variables:
 # ispell-local-dictionary: "francais-tex"
